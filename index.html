@@ -20,7 +20,7 @@
             </div>
             <div class="heads">What is <span id="num1"> 10 </span> Multiply by <span id="num2"> 20 </span> ?</div>
             <div class="answer_area"><input type="text" placeholder="Enter your Answer here" id="input">
-            <button>Submit</button>
+            <button id="btn">Submit</button>
             </div>
         </div>
         <div class="credits">
@@ -34,11 +34,24 @@
     let score_area = document.getElementById('score');
     let num1_area = document.getElementById('num1');
     let num2_area = document.getElementById('num2');
-    let input = document.getElementById('input');
-
+    const input = document.getElementById('input');
+    let btn = document.getElementById('btn');
+    const correctAnswer = num1 * num2;
     num1_area.innerHTML = num1;
     num2_area.innerHTML = num2;
-
+    let score = JSON.parse(localStorage.getItem("score"));
+   
+    btn.onclick = function(){
+    location.reload()
+      if(input.value == correctAnswer){
+        score++
+        localStorage.setItem("score",JSON.stringify(score))
+      }else {
+        score--
+        localStorage.setItem("score", JSON.stringify(score))
+      }
+    }
+    score_area.innerHTML = score;
 </script>
 
 </html>
